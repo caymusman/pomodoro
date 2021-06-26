@@ -126,7 +126,6 @@ class App extends React.Component{
   handlePercent(){
     let totalTime = this.state.countState == "Session" ? this.state.slength * 60 : this.state.blength * 60;
     let currentTime = this.state.minutes * 60 + this.state.seconds;
-    console.log("Percented");
     this.setState({percent: currentTime * 1.0/totalTime});
   }
   
@@ -171,10 +170,7 @@ class App extends React.Component{
   }
   
   handleStartStop(){
-    console.log("CLICK");
-    console.log(this.state.running);
     if(this.state.running){
-      console.log("Running and gonna stop");
       this.handleRun("Stop");
     }else{
       this.handleRun("Start");
@@ -185,15 +181,15 @@ class App extends React.Component{
   render(){
     return(
       <div id="all">
-        <ClockOutline percent={this.state.percent} red={this.state.below}/>
+        <ClockOutline percent={this.state.percent} red={this.state.below} running={this.state.running}/>
         <div id="clock-area">
-          <h3 id="timer-label">{this.state.countState}</h3>
+          <h3 id="timer-label">{this.state.countState == "Session" ? "Work" : "Rest"}</h3>
           <h3 id="time-left" 
-            className={this.state.below ? "red" : "white"}>{this.state.minutes < 10 ? "0" + this.state.minutes : this.state.minutes}:{this.state.seconds < 10 ? "0" + this.state.seconds : this.state.seconds}</h3>
+            className={this.state.below ? "red" : this.state.running ? "green" : "black" }>{this.state.minutes < 10 ? "0" + this.state.minutes : this.state.minutes}:{this.state.seconds < 10 ? "0" + this.state.seconds : this.state.seconds}</h3>
         </div>
         <div id="time-amts">
           <div id="break-area">
-            <h3 id="break-label">Break Length</h3>
+            <h3 id="break-label">Work Time</h3>
             <div className="divOrg">
               <button 
                 className="btnClass"
@@ -207,7 +203,7 @@ class App extends React.Component{
             </div>
           </div>
           <div id="session-area">
-            <h3 id="session-label">Session Length</h3>
+            <h3 id="session-label">Rest Time</h3>
             <div className="divOrg">
               <button 
                 className="btnClass"
@@ -277,13 +273,14 @@ class ClockOutline extends React.Component{
       r : this.state.radius,
       strokeDasharray: this.state.dArray,
       strokeDashoffset: this.props.percent ? this.props.percent * this.state.circumference : this.state.circumference,
+      transition: this.props.running ? 'stroke-dashoffset 1.1s linear, stroke .5s linear' : 'stroke .5s linear'
     }
     return(
       <svg className="progress-ring">
         <circle
           style={myStyle}
           className="progress-ring-circle"
-          stroke={this.props.red ? "#a83242" : '#187d13'}
+          stroke={this.props.red ? "#a83242" : '#54a350'}
           strokeWidth="3"
           fill="transparent"
           r="52"

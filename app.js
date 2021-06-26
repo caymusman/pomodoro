@@ -170,7 +170,6 @@ var App = function (_React$Component) {
     value: function handlePercent() {
       var totalTime = this.state.countState == "Session" ? this.state.slength * 60 : this.state.blength * 60;
       var currentTime = this.state.minutes * 60 + this.state.seconds;
-      console.log("Percented");
       this.setState({ percent: currentTime * 1.0 / totalTime });
     }
   }, {
@@ -221,10 +220,7 @@ var App = function (_React$Component) {
   }, {
     key: "handleStartStop",
     value: function handleStartStop() {
-      console.log("CLICK");
-      console.log(this.state.running);
       if (this.state.running) {
-        console.log("Running and gonna stop");
         this.handleRun("Stop");
       } else {
         this.handleRun("Start");
@@ -238,19 +234,19 @@ var App = function (_React$Component) {
       return React.createElement(
         "div",
         { id: "all" },
-        React.createElement(ClockOutline, { percent: this.state.percent, red: this.state.below }),
+        React.createElement(ClockOutline, { percent: this.state.percent, red: this.state.below, running: this.state.running }),
         React.createElement(
           "div",
           { id: "clock-area" },
           React.createElement(
             "h3",
             { id: "timer-label" },
-            this.state.countState
+            this.state.countState == "Session" ? "Work" : "Rest"
           ),
           React.createElement(
             "h3",
             { id: "time-left",
-              className: this.state.below ? "red" : "white" },
+              className: this.state.below ? "red" : this.state.running ? "green" : "black" },
             this.state.minutes < 10 ? "0" + this.state.minutes : this.state.minutes,
             ":",
             this.state.seconds < 10 ? "0" + this.state.seconds : this.state.seconds
@@ -265,7 +261,7 @@ var App = function (_React$Component) {
             React.createElement(
               "h3",
               { id: "break-label" },
-              "Break Length"
+              "Work Time"
             ),
             React.createElement(
               "div",
@@ -299,7 +295,7 @@ var App = function (_React$Component) {
             React.createElement(
               "h3",
               { id: "session-label" },
-              "Session Length"
+              "Rest Time"
             ),
             React.createElement(
               "div",
@@ -409,7 +405,8 @@ var ClockOutline = function (_React$Component2) {
       var myStyle = {
         r: this.state.radius,
         strokeDasharray: this.state.dArray,
-        strokeDashoffset: this.props.percent ? this.props.percent * this.state.circumference : this.state.circumference
+        strokeDashoffset: this.props.percent ? this.props.percent * this.state.circumference : this.state.circumference,
+        transition: this.props.running ? 'stroke-dashoffset 1.1s linear, stroke .5s linear' : 'stroke .5s linear'
       };
       return React.createElement(
         "svg",
@@ -417,7 +414,7 @@ var ClockOutline = function (_React$Component2) {
         React.createElement("circle", {
           style: myStyle,
           className: "progress-ring-circle",
-          stroke: this.props.red ? "#a83242" : '#187d13',
+          stroke: this.props.red ? "#a83242" : '#54a350',
           strokeWidth: "3",
           fill: "transparent",
           r: "52",
