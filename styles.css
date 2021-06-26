@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap");
+body {
+  background-color: #d1d1d1;
+  font-family: 'Montserrat', sans-serif;
+  color: black;
+}
+
+#title {
+  position: absolute;
+  left: 10%;
+  top: 5%;
+}
+
+#title:after {
+  content: "";
+  display: block;
+  width: 0%;
+  border-bottom: 2px solid black;
+  -webkit-transition: width 1s;
+  transition: width 1s;
+}
+
+#title:hover:after {
+  width: 100%;
+}
+
+#App {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+#all {
+  width: 40vmax;
+  height: 40vmax;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 5px black solid;
+  border-radius: 50%;
+}
+
+#all svg {
+  position: absolute;
+  width: 50vmax;
+  height: 50vmax;
+  z-index: 1;
+}
+
+#all svg circle {
+  stroke-dasharray: 10 20;
+  -webkit-transition: stroke-dashoffset 1.1s;
+  transition: stroke-dashoffset 1.1s;
+  -webkit-transition-timing-function: linear;
+          transition-timing-function: linear;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+}
+
+#all #time-amts {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  width: 80%;
+}
+
+#all .divOrg {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#all .btnClass {
+  width: 3vmax;
+  height: 1.5vmax;
+  outline: none;
+  border: none;
+  background-color: #bbb;
+  color: #333;
+  cursor: pointer;
+}
+
+#all #control-btns, #all #time-amts {
+  z-index: 5;
+}
+
+.red {
+  color: red;
+}
+
+.red:hover {
+  background-color: black;
+  -webkit-box-shadow: 1px 0px 5px black;
+          box-shadow: 1px 0px 5px black;
+}
+
+@media screen and (min-height: 600px) {
+  #clock-area {
+    width: 30%;
+  }
+}
+/*# sourceMappingURL=styles.css.map */
