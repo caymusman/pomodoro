@@ -107,13 +107,15 @@ var App = function (_React$Component) {
             return {
               blength: prevState.blength + 1,
               minutes: prevState.blength + 1,
-              seconds: 0
+              seconds: 0,
+              below: false
             };
           });
         } else if (this.state.blength < 60) {
           this.setState(function (prevState) {
             return {
-              blength: prevState.blength + 1
+              blength: prevState.blength + 1,
+              below: false
             };
           });
         }
@@ -149,13 +151,15 @@ var App = function (_React$Component) {
             return {
               slength: prevState.slength + 1,
               minutes: prevState.slength + 1,
-              seconds: 0
+              seconds: 0,
+              below: false
             };
           });
         } else if (this.state.slength < 60) {
           this.setState(function (prevState) {
             return {
-              slength: prevState.slength + 1
+              slength: prevState.slength + 1,
+              below: false
             };
           });
         }
@@ -333,7 +337,7 @@ var App = function (_React$Component) {
               id: "reset",
               onClick: this.handleReset,
               className: "btnClass" },
-            "reset"
+            "Reset"
           ),
           React.createElement(
             "button",
@@ -341,13 +345,13 @@ var App = function (_React$Component) {
               onClick: this.handleStartStop,
               className: "btnClass",
               id: "start_stop" },
-            "start"
+            this.state.running ? "Stop" : "Start"
           )
         ),
         React.createElement("audio", {
           id: "beep",
           preload: "auto",
-          src: "audio/beep.wav",
+          src: "audio/timer.wav",
           ref: function ref(audio) {
             return _this2.audioClip = audio;
           } })
@@ -410,17 +414,11 @@ var ClockOutline = function (_React$Component2) {
       return React.createElement(
         "svg",
         { className: "progress-ring" },
-        React.createElement(
-          "linearGradient",
-          { id: "linearColors", x1: "0", y1: "0", x2: "1", y2: "1" },
-          React.createElement("stop", { offset: "0%", stopColor: "#187d13" }),
-          React.createElement("stop", { offset: "150%", stopColor: "#4d963c" })
-        ),
         React.createElement("circle", {
           style: myStyle,
           className: "progress-ring-circle",
-          stroke: this.props.red ? "red" : 'url(#linearColors)',
-          strokeWidth: "4",
+          stroke: this.props.red ? "#a83242" : '#187d13',
+          strokeWidth: "3",
           fill: "transparent",
           r: "52",
           cx: "50%",

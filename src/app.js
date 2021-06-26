@@ -82,10 +82,12 @@ class App extends React.Component{
         this.setState (prevState => ({
           blength: prevState.blength + 1,
           minutes: prevState.blength + 1,
-          seconds: 0
+          seconds: 0,
+          below: false
       }))}else if(this.state.blength < 60){
         this.setState(prevState => ({
-          blength: prevState.blength + 1
+          blength: prevState.blength + 1,
+          below: false
         }));
       }
     }
@@ -110,10 +112,12 @@ class App extends React.Component{
         this.setState (prevState => ({
           slength: prevState.slength + 1,
           minutes: prevState.slength + 1,
-          seconds: 0
+          seconds: 0,
+          below: false
       }))}else if(this.state.slength < 60){
         this.setState(prevState => ({
-          slength: prevState.slength + 1
+          slength: prevState.slength + 1,
+          below: false
         }));
       }
     }
@@ -221,16 +225,16 @@ class App extends React.Component{
           <button 
               id="reset"
               onClick={this.handleReset}
-              className="btnClass">reset</button>
+              className="btnClass">Reset</button>
           <button 
             onClick={this.handleStartStop}
             className="btnClass" 
-            id="start_stop">start</button>
+            id="start_stop">{this.state.running ? "Stop" : "Start"}</button>
         </div>
         <audio 
           id="beep"
           preload="auto"
-          src="audio/beep.wav"
+          src="audio/timer.wav"
           ref={(audio) => this.audioClip = audio}></audio>
       </div>
     )
@@ -272,19 +276,15 @@ class ClockOutline extends React.Component{
     let myStyle = {
       r : this.state.radius,
       strokeDasharray: this.state.dArray,
-      strokeDashoffset: this.props.percent ? this.props.percent * this.state.circumference : this.state.circumference
+      strokeDashoffset: this.props.percent ? this.props.percent * this.state.circumference : this.state.circumference,
     }
     return(
       <svg className="progress-ring">
-        <linearGradient id="linearColors" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#187d13"></stop>
-          <stop offset="150%" stopColor="#4d963c"></stop>
-        </linearGradient>
         <circle
           style={myStyle}
           className="progress-ring-circle"
-          stroke={this.props.red ? "red" : 'url(#linearColors)'}
-          strokeWidth="4"
+          stroke={this.props.red ? "#a83242" : '#187d13'}
+          strokeWidth="3"
           fill="transparent"
           r="52"
           cx="50%"
