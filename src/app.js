@@ -189,7 +189,7 @@ class App extends React.Component{
         </div>
         <div id="time-amts">
           <div id="break-area">
-            <h3 id="break-label">Work Time</h3>
+            <h3 id="break-label">Rest Time</h3>
             <div className="divOrg">
               <button 
                 className="btnClass"
@@ -203,7 +203,7 @@ class App extends React.Component{
             </div>
           </div>
           <div id="session-area">
-            <h3 id="session-label">Rest Time</h3>
+            <h3 id="session-label">Work Time</h3>
             <div className="divOrg">
               <button 
                 className="btnClass"

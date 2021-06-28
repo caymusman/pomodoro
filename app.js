@@ -261,7 +261,7 @@ var App = function (_React$Component) {
             React.createElement(
               "h3",
               { id: "break-label" },
-              "Work Time"
+              "Rest Time"
             ),
             React.createElement(
               "div",
@@ -295,7 +295,7 @@ var App = function (_React$Component) {
             React.createElement(
               "h3",
               { id: "session-label" },
-              "Rest Time"
+              "Work Time"
             ),
             React.createElement(
               "div",
