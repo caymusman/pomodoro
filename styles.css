@@ -175,6 +175,11 @@ h4 {
   cursor: pointer;
 }
 
+#all .btnClass:hover {
+  -webkit-filter: drop-shadow(1px 1px 1px #666);
+          filter: drop-shadow(1px 1px 1px #666);
+}
+
 #all #control-btns, #all #time-amts {
   z-index: 5;
 }
