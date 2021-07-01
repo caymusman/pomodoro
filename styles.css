@@ -163,8 +163,11 @@ h4 {
           justify-content: space-between;
 }
 
-#all .btnClass {
+#all .divOrg button {
   width: 3vmax;
+}
+
+#all .btnClass {
   height: 3vmax;
   font-size: 1.5vmax;
   outline: none;
